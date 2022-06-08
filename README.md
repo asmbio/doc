@@ -30,29 +30,52 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 
 ## cli 命令列表
 
-创建一个钱包
+- 创建一个钱包
+
     ``` 
     ./wallet init 
     ```
-说明：在当前目录初始化钱包,下载查看或者执行钱包相关命令时，必须切换到该目录
+
 - 创建一个新地址
-  './wallet new'
+  
+  ```
+  ./wallet new
+  ```
 - 查看地址列表
-  './wallet list'
+  
+  ```
+  ./wallet list
+  ```
+
 - 删除一个地址
-  './wallet delete -a t1hftqqtkxjjlechclxkzxapngzmkcwpfhcwesnra'
+  
+  ```
+  ./wallet delete -a t1hftqqtkxjjlechclxkzxapngzmkcwpfhcwesnra
+  ```
+
 - 查看区块
-'wallet block getblocks -h'
+
+```
+wallet block getblocks -h
+```
+
 - 查看账户余额
-' wallet account -h'
+
+```
+wallet account -h
+```
+
 - 查看分片
-' wallet slice  -h'
+
+```
+ wallet slice  -h
+```
+
 - 转账
-' wallet Trans -h '
 
-
-
-
+```
+wallet Trans -h 
+```
 
 
 #### asmb 使用说明
