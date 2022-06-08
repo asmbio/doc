@@ -32,7 +32,10 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 下载地址:[github.com/asmbio/doc/releases/](https://github.com/asmbio/doc/releases/)
 1. windows 安装
     从上面地址选择相应的版本后，将下载后的文件放到一个目录下，比如C:\asmb\mywallet> , 然后打开命令行，即可执行命令，或者设置一下windows 环境变量更加方便
-    ![image](https://user-images.githubusercontent.com/9838830/172351879-d6fe0ceb-80f7-4c32-88c0-d463ac840b4e.png)
+    ```
+    ./wallet -h
+    ```
+   
 2. Ubuntu 安装
 
 
@@ -43,30 +46,30 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 1.  下载
 3.  xxxx
 
-##  2. <a name='cli-1'></a>cli 命令列表
+##  2. <a name='cli-1'></a>cli 命令
 
 - 创建一个钱包
 
-    ``` 
-    ./wallet init 
-    ```
+``` 
+./wallet init 
+```
 
 - 创建一个新地址
   
-  ```
-  ./wallet new
-  ```
+```
+./wallet new
+```
 - 查看地址列表
   
-  ```
-  ./wallet list
-  ```
+```
+./wallet list
+```
 
 - 删除一个地址
   
-  ```
-  ./wallet delete -a t1hftqqtkxjjlechclxkzxapngzmkcwpfhcwesnra
-  ```
+```
+./wallet delete -a t1hftqqtkxjjlechclxkzxapngzmkcwpfhcwesnra
+```
 
 - 查看区块
 
