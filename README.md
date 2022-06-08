@@ -1,6 +1,21 @@
+<!-- vscode-markdown-toc -->
+* 1. [安装下载](#)
+	* 1.1. [从源码编译](#-1)
+	* 1.2. [命令行cli 版本 安装](#cli)
+	* 1.3. [桌面版本 版本 安装](#-1)
+* 2. [cli 命令列表](#cli-1)
+* 3. [asmb 使用说明](#asmb)
+* 4. [wallet 使用说明](#wallet)
+* 5. [备忘](#-1)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
 # ASMB（自动伸缩网状区块链）
 
-## 介绍
 ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理论上实现超亿级tps，上不封顶。
 单账号消息tps可达3000/s，下面是更详细的技术参数
 - 多->单：输出端每个账号1000/s，输入端接收3000/s 左右，二次分片后可实现单账号无上限接收速度
@@ -8,12 +23,14 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 
 
 
-## 安装下载
-### 从源码编译
+
+
+##  1. <a name=''></a>安装下载
+###  1.1. <a name='-1'></a>从源码编译
 - 编译  go build
 - //+debug 《该注释下内容逻辑无关，可以注释掉，提高性能
 
-### 命令行cli 版本 安装
+###  1.2. <a name='cli'></a>命令行cli 版本 安装
 下载地址:[github.com/asmbio/doc/releases/](https://github.com/asmbio/doc/releases/)
 1. windows 安装
     从上面地址选择相应的版本后，将下载后的文件放到一个目录下，比如C:\asmb\mywallet> , 然后打开命令行，即可执行命令，或者设置一下windows 环境变量更加方便
@@ -22,13 +39,13 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 
 
 
-### 桌面版本 版本 安装
+###  1.3. <a name='-1'></a>桌面版本 版本 安装
 
 
 1.  下载
 3.  xxxx
 
-## cli 命令列表
+##  2. <a name='cli-1'></a>cli 命令列表
 
 - 创建一个钱包
 
@@ -78,22 +95,33 @@ wallet Trans -h
 ```
 
 
-#### asmb 使用说明
-##### 开启一个本地测试区块链仓库
+##  3. <a name='asmb'></a>asmb 使用说明
+
+```
+asmb -h
+```
+
+- 开启一个本地测试区块链仓库
 1.  初始化仓库 ./asmb init 
 2.  创建第一个创世块 ./asmb genesis
 3.  创世旷工开启 ./asmb genesisminer
-##### 开启第二个本地测试链仓库，并连接第一个节点同步数据
+-  开启第二个本地测试链仓库，并连接第一个节点同步数据
 1.  初始化仓库 ./asmb init -r asmb2
 2.  复制创世区块cid
 3.  配置第一个节点id，使得第二个节点连接到第一个节点
 4.  开启区块仓库 ./asmb daemon -r asmb2
-#### 备忘
-##### 启动进程文件hash，如何判断是否全部升级
-##### 彩蛋1
+
+##  4. <a name='wallet'></a>wallet 使用说明
+
+```
+wallet -h
+```
+
+下载地址 
+##  5. <a name='-1'></a>备忘
+- 启动进程文件hash，如何判断是否全部升级
+- 彩蛋1
 1. 启动文件hash 加密mac 、时间、
 2. 加密后混淆算法 混淆mac 和 时间
 3. 将混淆后的hash 定时发送到网络，等待随机抽奖
 
-#### wallet 使用说明
-下载地址 
