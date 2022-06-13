@@ -3,10 +3,13 @@
 	* 1.1. [从源码编译](#-1)
 	* 1.2. [命令行cli 版本 安装](#cli)
 	* 1.3. [桌面版本 版本 安装](#-1)
-* 2. [cli 命令列表](#cli-1)
-* 3. [asmb 使用说明](#asmb)
-* 4. [wallet 使用说明](#wallet)
-* 5. [备忘](#-1)
+	* 1.4. [cli 命令](#cli-1)
+	* 1.5. [asmb 使用说明](#asmb)
+	* 1.6. [wallet 使用说明](#wallet)
+* 2. [如何开启初始化一个新的链](#-1)
+* 3. [如何启动完整观察链](#-1)
+* 4. [如何启动一个生产节点](#-1)
+* 5. [如何添加一个备用服务器资源](#-1)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -46,7 +49,7 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 1.  下载
 3.  xxxx
 
-##  2. <a name='cli-1'></a>cli 命令
+###  1.4. <a name='cli-1'></a>cli 命令
 
 - 创建一个钱包
 
@@ -96,7 +99,7 @@ wallet Trans -h
 ```
 
 
-##  3. <a name='asmb'></a>asmb 使用说明
+###  1.5. <a name='asmb'></a>asmb 使用说明
 
 ```
 asmb -h
@@ -112,11 +115,53 @@ asmb -h
 3.  配置第一个节点id，使得第二个节点连接到第一个节点
 4.  开启区块仓库 ./asmb daemon -r asmb2
 
-##  4. <a name='wallet'></a>wallet 使用说明
+###  1.6. <a name='wallet'></a>wallet 使用说明
 
 ```
 wallet -h
 ```
+
+##  2. <a name='-1'></a>如何开启初始化一个新的链
+##  3. <a name='-1'></a>如何启动完整观察链
+
+##  4. <a name='-1'></a>如何启动一个生产节点
+如果是创世时期，必须拥有Genesis 创世者密钥才能启动生产节点
+
+##  5. <a name='-1'></a>如何添加一个备用服务器资源
+初始化节点文件夹
+```
+mkdir node1
+cd node1
+asmb init
+mkdir lcdb
+wallet init
+```
+
+导入生产者秘钥 
+
+```
+wallet import -khex export.w
+```
+
+拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口
+
+```
+"Rpcclientaddr": "127.0.0.1:8106"
+``` 
+
+拷贝创世配置文件 Genesis
+```
+cp ../asmb/Genesis Genesis
+```
+
+启动节点
+
+```
+asmb genesisminer
+
+```
+
+
 
 下载地址 
 

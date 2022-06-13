@@ -42,13 +42,18 @@ etcd -name e3 -initial-advertise-peer-urls http://0.0.0.0:23803 \
 ```
 
 etcdctl user add root
-etcdctl user add read
-etcdctl role add read
-etcdctl role grant-permission read read / *
-etcdctl user grant read read
+etcdctl user add reader
+etcdctl role add reader
+etcdctl role grant-permission reader read asmb/ *
+etcdctl user grant reader reader
 etcdctl auth enable
-etcdctl --user="root" --password="123456" auth disable
 
+```
+
+取消访问权限
+
+```
+etcdctl --user root:123456 auth disable
 ```
 
 参考:https://blog.csdn.net/u013761036/article/details/103900225
