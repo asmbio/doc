@@ -105,15 +105,6 @@ wallet Trans -h
 asmb -h
 ```
 
-- 开启一个本地测试区块链仓库
-1.  初始化仓库 ./asmb init 
-2.  创建第一个创世块 ./asmb genesis
-3.  创世旷工开启 ./asmb genesisminer
--  开启第二个本地测试链仓库，并连接第一个节点同步数据
-1.  初始化仓库 ./asmb init -r asmb2
-2.  复制创世区块cid
-3.  配置第一个节点id，使得第二个节点连接到第一个节点
-4.  开启区块仓库 ./asmb daemon -r asmb2
 
 ###  1.6. <a name='wallet'></a>wallet 使用说明
 
@@ -122,10 +113,46 @@ wallet -h
 ```
 
 ##  2. <a name='-1'></a>如何开启初始化一个新的链
+
+
+初始化仓库 
+```
+mkdir node1
+cd node1
+node1$ ./asmb init 
+mkdir node2
+cd node2
+node2$ ./asmb init 
+```
+修改配置文件
+
+
+创建第一个创世块 
+```
+node1$ ./asmb genesis
+
+node2$ asmb genesis -block xxxxxx
+```
+
+创世旷工开启 ./asmb genesisminer
+
+启动节点1
+```
+node1$ asmb genesisminer -miners 2YK3vbyZtstMS4ajXPxZhwksZDbv -rank 2
+```
+启动节点2
+```
+node2$ asmb genesisminer -miners CkPw1fzw3tgN6t8NFRuP1hHnSw7 -miners 492xZNKN8FdH9NF3gUWX8A1iHbVj  -rank 0 -rank 1
+```
+
+
+
 ##  3. <a name='-1'></a>如何启动完整观察链
 
 ##  4. <a name='-1'></a>如何启动一个生产节点
 如果是创世时期，必须拥有Genesis 创世者密钥才能启动生产节点
+
+正常生产节点在获得投票排名之前处于观察状态，排名更新后自动开始生产
 
 ##  5. <a name='-1'></a>如何添加一个备用服务器资源
 初始化节点文件夹
@@ -134,6 +161,7 @@ mkdir node1
 cd node1
 asmb init
 mkdir lcdb
+cd lcdb
 wallet init
 ```
 
@@ -161,6 +189,10 @@ asmb genesisminer
 
 ```
 
+## 如何借用观察链启动独立运算钱包
+## 如何借用观察链启动远程钱包
+
+无论那种情况启动钱包wallet，秘钥都在本地加密管理，如果本地设备损坏或者丢失，秘钥也会丢失无法找回
 
 
 下载地址 
