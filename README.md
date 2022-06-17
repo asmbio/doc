@@ -112,10 +112,39 @@ asmb -h
 wallet -h
 ```
 
-##  2. <a name='-1'></a>如何开启初始化一个新的链
+##  2. <a name='-1'></a>如何开启初始化一个新的测试链
 
+硬编码测试链参数
 
-初始化仓库 
+以下参数，相同的区块链网络要保持一致，不然会出现不同的分叉
+```
+const ASMB_ID = "0" // 本地测试链0, 测试链1，主链2
+const Chainid = 0   //区块链id 与上面相同 类型不同
+
+//const RAFT_LVLDB_SMSGS = "asmb/smsgs/" //区块分片massagemanager,其他分片的数据
+const DefaultGenesisAccountNum = 100 // 重新生成 genesis config 时使用
+const Producer_n = 3                 // DOPS+ 超级节点总数量轮流出块，主网 设置为21+
+const Minfork = Producer_n           // 最小连续出块（分叉，拆合平均统计周期）
+const Forkcountdown = 3              // 倒计时区块数，准备新的片接口服务
+
+const BLOCK_OUT_TIME = 20 //出块等待超时时间,对应当前生产者最长出块时间 在 BLOCK_OUT_TIME/2 左右
+// Height%Producer_n == 生产者排名-1 时出块，所以创世块 以后从 排名二生产者出块
+
+const Maxblocksize = 1024 * 2                     // 最大区块大小  正常设置值:1024  * 500 (bit byte ;1024 字节 大约是6个msg 大小
+const Splitpercentage = 0.60                      // 分叉 百分比（连续出块大小平均大于 Maxblocksize*Splitpercentage 分拆成两个
+const Mergepercentage = Splitpercentage / 10 * 4  // 拆合 百分比 ，拆根据情况将分片区间按照平均中位数 拆到左右分片
+const Emptyypercentage = Splitpercentage / 10 * 5 // 补充区块区块大小 (必须在分叉百分比和合并百分比之间)
+
+```
+
+```
+const MINER_CHAN_NUM = 10 // 处理消息协程数量（根据服务器性能来配置
+```
+
+配置etcd 集群
+[https://gitee.com/asmb/doc/blob/master/etcd.md](https://github.com/asmbio/doc/blob/master/etcd.md)]
+
+初始化仓库,如果你拥有所有创世生产者密钥，只需要开启一个node，如果创世者有多个，由不同的创世者分别开启每个node 必须维护一个单独etcd 分片管理集群
 ```
 mkdir node1
 cd node1
@@ -124,20 +153,35 @@ mkdir node2
 cd node2
 node2$ ./asmb init 
 ```
-修改配置文件
+导入密钥
+```
+# export.w 包含加密后的密钥数据
+wallet import -hkey export.w
+```
 
+拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口
+
+```
+"Rpcclientaddr": "asmb.site:8106"
+``` 
+
+拷贝创世文件 Genesis
+```
+cp ../asmb/Genesis Genesis
+```
 
 创建第一个创世块 
 ```
 node1$ ./asmb genesis
 
-node2$ asmb genesis -block xxxxxx
+node2$ asmb genesis -block Qmcmksga4noMXmE7Wa9gShPFWW53xXyY1sVaWNcXqtWGLp
 ```
 
 创世旷工开启 ./asmb genesisminer
 
 启动节点1
 ```
+# asmb genesisminer 默认加载所有生产者，如果你导入了所有生产者密钥的话，不然会报错误，无法签名
 node1$ asmb genesisminer -miners 2YK3vbyZtstMS4ajXPxZhwksZDbv -rank 2
 ```
 启动节点2
@@ -155,6 +199,9 @@ node2$ asmb genesisminer -miners CkPw1fzw3tgN6t8NFRuP1hHnSw7 -miners 492xZNKN8Fd
 正常生产节点在获得投票排名之前处于观察状态，排名更新后自动开始生产
 
 ##  5. <a name='-1'></a>如何添加一个备用服务器资源
+配置etcd 集群
+[https://gitee.com/asmb/doc/blob/master/etcd.md](https://github.com/asmbio/doc/blob/master/etcd.md)]
+
 初始化节点文件夹
 ```
 mkdir node1
@@ -174,10 +221,10 @@ wallet import -khex export.w
 拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口
 
 ```
-"Rpcclientaddr": "127.0.0.1:8106"
+"Rpcclientaddr": "asmb.site:8106"
 ``` 
 
-拷贝创世配置文件 Genesis
+拷贝创世文件 Genesis
 ```
 cp ../asmb/Genesis Genesis
 ```

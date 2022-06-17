@@ -36,7 +36,17 @@ etcd -name e3 -initial-advertise-peer-urls http://0.0.0.0:23803 \
                -initial-cluster e0=http://0.0.0.0:2380,e2=http://0.0.0.0:23802,e1=http://0.0.0.0:23801,,e3=http://0.0.0.0:23803 \
                 -initial-cluster-state existing
 ```
-    
+单节点 启动脚本
+
+```
+etcd -name e0 -heartbeat-interval 1000 -election-timeout 5000 -initial-advertise-peer-urls http://0.0.0.0:2380 \
+          -listen-peer-urls http://0.0.0.0:2380 \
+            -listen-client-urls http://0.0.0.0:2379 \
+              -advertise-client-urls http://0.0.0.0:2379 \
+                -initial-cluster e0=http://0.0.0.0:2380 \
+                -initial-cluster-state new
+```
+
 #### 设置访问权限
 
 ```
