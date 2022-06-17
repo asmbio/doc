@@ -6,10 +6,12 @@
 	* 1.4. [cli 命令](#cli-1)
 	* 1.5. [asmb 使用说明](#asmb)
 	* 1.6. [wallet 使用说明](#wallet)
-* 2. [如何开启初始化一个新的链](#-1)
+* 2. [如何启动一个本地区块链网络](#-1)
 * 3. [如何启动完整观察链](#-1)
 * 4. [如何启动一个生产节点](#-1)
 * 5. [如何添加一个备用服务器资源](#-1)
+* 6. [如何借用观察链启动独立运算钱包](#-1)
+* 7. [如何借用观察链启动远程钱包](#-1)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -112,13 +114,13 @@ asmb -h
 wallet -h
 ```
 
-##  2. <a name='-1'></a>如何开启初始化一个新的测试链
+##  2. <a name='-1'></a>如何启动一个本地区块链网络
 
 硬编码测试链参数
 
 以下参数，相同的区块链网络要保持一致，不然会出现不同的分叉
 ```
-const ASMB_ID = "0" // 本地测试链0, 测试链1，主链2
+const ASMB_ID = "0" // 本地测试链0, 测试链1，主链2,个人测试选择其他id，防止重复
 const Chainid = 0   //区块链id 与上面相同 类型不同
 
 //const RAFT_LVLDB_SMSGS = "asmb/smsgs/" //区块分片massagemanager,其他分片的数据
@@ -144,7 +146,7 @@ const MINER_CHAN_NUM = 10 // 处理消息协程数量（根据服务器性能来
 配置etcd 集群
 [https://gitee.com/asmb/doc/blob/master/etcd.md](https://github.com/asmbio/doc/blob/master/etcd.md)]
 
-初始化仓库,如果你拥有所有创世生产者密钥，只需要开启一个node，如果创世者有多个，由不同的创世者分别开启每个node 必须维护一个单独etcd 分片管理集群
+初始化仓库,如果你拥有所有创世生产者密钥，只需要开启一个node，如果创世者有多个，由不同的创世者分别开启,每个完成node必须维护一个单独etcd 分片管理集群
 ```
 mkdir node1
 cd node1
@@ -159,11 +161,58 @@ node2$ ./asmb init
 wallet import -hkey export.w
 ```
 
-拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口
+拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口，将 FullapilistConfig 修改成自己的etcd集群
 
 ```
 "Rpcclientaddr": "asmb.site:8106"
+"FullapilistConfig": {
+		"MinersliceAeskey": "eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1", //分片管理加密秘钥，用于解析分片服务 token，拥有该秘钥才能访问etcd 注册的节点服务
+		"MinersliceNet": "mountain",
+		"Endpoints": [
+			"asmb.site:2379"									// Endpoints
+		],
+		"Username": "xxx",										// 读写权限用户密码
+		"Password": "xxxxxx"
+	},
 ``` 
+完整 asmbcfg 配置
+```
+{
+	# rpc 服务相关配置
+	"Rpccfg": {
+		"Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJyZWFkIiwid3JpdGUiLCJzaWduIiwiYWRtaW4iXX0.ae22SYWjZ_RJRRhfWDpVFzWThu_6EQ-iBgAn8vdrR-w",
+		"APISecret": "123456"									// rpc jwt 秘钥
+	},
+	"Rpcaddr": ":8106",
+	"Rpcclientaddr": "192.168.106.9:8106",
+	"NodeMode": "HeavyNode",
+	"LookBack": 0,
+	# 本节点所在etcd 分片管理器 
+	"FullapilistConfig": {
+		"MinersliceAeskey": "eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1", //分片管理加密秘钥，用于解析分片服务 token，拥有该秘钥才能访问etcd 注册的节点服务
+		"MinersliceNet": "mountain",
+		"Endpoints": [
+			"asmb.site:2379"									// Endpoints
+		],
+		"Username": "xxx",										// 读写权限用户密码
+		"Password": "xxxxxx"
+	},
+	# 本etcd 节点故障后，通过下面etcd 集群同步数据
+	"FullapilistConfigs": [
+		{
+			"MinersliceAeskey": "eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1",
+			"MinersliceNet": "",
+			"Endpoints": [
+				"94.191.121.95:3379"
+			],
+			"Username": "reader",
+			"Password": "test123456"
+		}
+	],
+	"NormalServerLoadCount": 9,	
+	"SliceMgBackupCount":1
+}
+```
 
 拷贝创世文件 Genesis
 ```
@@ -236,8 +285,8 @@ asmb genesisminer
 
 ```
 
-## 如何借用观察链启动独立运算钱包
-## 如何借用观察链启动远程钱包
+##  6. <a name='-1'></a>如何借用观察链启动独立运算钱包
+##  7. <a name='-1'></a>如何借用观察链启动远程钱包
 
 无论那种情况启动钱包wallet，秘钥都在本地加密管理，如果本地设备损坏或者丢失，秘钥也会丢失无法找回
 
