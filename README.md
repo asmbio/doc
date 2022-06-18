@@ -19,6 +19,7 @@
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
+
 # ASMB（自动伸缩网状区块链）
 
 ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理论上实现超亿级tps，上不封顶。
@@ -169,50 +170,13 @@ wallet import -hkey export.w
 		"MinersliceAeskey": "eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1", //分片管理加密秘钥，用于解析分片服务 token，拥有该秘钥才能访问etcd 注册的节点服务
 		"MinersliceNet": "mountain",
 		"Endpoints": [
-			"asmb.site:2379"									// Endpoints
+			"127.0.0.1:2379"									// Endpoints
 		],
 		"Username": "xxx",										// 读写权限用户密码
 		"Password": "xxxxxx"
 	},
 ``` 
-完整 asmbcfg 配置
-```
-{
-	# rpc 服务相关配置
-	"Rpccfg": {
-		"Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJyZWFkIiwid3JpdGUiLCJzaWduIiwiYWRtaW4iXX0.ae22SYWjZ_RJRRhfWDpVFzWThu_6EQ-iBgAn8vdrR-w",
-		"APISecret": "123456"									// rpc jwt 秘钥
-	},
-	"Rpcaddr": ":8106",
-	"Rpcclientaddr": "192.168.106.9:8106",
-	"NodeMode": "HeavyNode",
-	"LookBack": 0,
-	# 本节点所在etcd 分片管理器 
-	"FullapilistConfig": {
-		"MinersliceAeskey": "eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1", //分片管理加密秘钥，用于解析分片服务 token，拥有该秘钥才能访问etcd 注册的节点服务
-		"MinersliceNet": "mountain",
-		"Endpoints": [
-			"asmb.site:2379"									// Endpoints
-		],
-		"Username": "xxx",										// 读写权限用户密码
-		"Password": "xxxxxx"
-	},
-	# 本etcd 节点故障后，通过下面etcd 集群同步数据
-	"FullapilistConfigs": [
-		{
-			"MinersliceAeskey": "eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1",
-			"MinersliceNet": "",
-			"Endpoints": [
-				"94.191.121.95:3379"
-			],
-			"Username": "reader",
-			"Password": "test123456"
-		}
-	],
-	"NormalServerLoadCount": 9,	
-	"SliceMgBackupCount":1
-}
-```
+
 
 拷贝创世文件 Genesis
 ```
