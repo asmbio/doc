@@ -3,9 +3,8 @@
 	* 1.1. [从源码编译](#-1)
 	* 1.2. [命令行cli 版本 安装](#cli)
 	* 1.3. [桌面版本 版本 安装](#-1)
-	* 1.4. [cli 命令](#cli-1)
-	* 1.5. [asmb 使用说明](#asmb)
-	* 1.6. [wallet 使用说明](#wallet)
+	* 1.4. [asmb 使用说明](#asmb)
+	* 1.5. [wallet 使用说明](#wallet)
 * 2. [如何启动一个本地区块链网络](#-1)
 * 3. [如何启动完整观察链](#-1)
 * 4. [如何启动一个生产节点](#-1)
@@ -18,7 +17,6 @@
 	autoSave=true
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
-
 
 # ASMB（自动伸缩网状区块链）
 
@@ -52,64 +50,16 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 1.  下载
 3.  xxxx
 
-###  1.4. <a name='cli-1'></a>cli 命令
-
-- 创建一个钱包
-
-``` 
-./wallet init 
-```
-
-- 创建一个新地址
-  
-```
-./wallet new
-```
-- 查看地址列表
-  
-```
-./wallet list
-```
-
-- 删除一个地址
-  
-```
-./wallet delete -a t1hftqqtkxjjlechclxkzxapngzmkcwpfhcwesnra
-```
-
-- 查看区块
-
-```
-wallet block getblocks -h
-```
-
-- 查看账户余额
-
-```
-wallet account -h
-```
-
-- 查看分片
-
-```
- wallet slice  -h
-```
-
-- 转账
-
-```
-wallet Trans -h 
-```
 
 
-###  1.5. <a name='asmb'></a>asmb 使用说明
+###  1.4. <a name='asmb'></a>asmb 使用说明
 
 ```
 asmb -h
 ```
 
 
-###  1.6. <a name='wallet'></a>wallet 使用说明
+###  1.5. <a name='wallet'></a>wallet 使用说明
 
 ```
 wallet -h
@@ -141,7 +91,7 @@ const Emptyypercentage = Splitpercentage / 10 * 5 // 补充区块区块大小 (�
 ```
 
 ```
-const MINER_CHAN_NUM = 10 // 处理消息协程数量（根据服务器性能来配置
+const MINER_CHAN_NUM = 10 // 处理消息协程数量（根据服务器节点性能来配置
 ```
 
 配置etcd 集群
@@ -220,9 +170,10 @@ node1$ ./asmb init
 ```
 # 参考 如何启动一个本地区块链网络
 ```
-启动空节点，空节点数量*每个最大节点分片，必须大于你要观察的区块链网络的分片数量，不然会出现资源不足的情况
+启动空节点
 
 ```
+# 空节点数量*每个节点最大分片数量，必须大于你要观察的区块链网络的分片数量，不然会出现资源不足的情况
 # 由于是观察链，不需要生产者密钥，设置一个不存在的生产者
 asmb node addnode -miners ttt -rank 99999
 ```
