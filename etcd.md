@@ -54,7 +54,7 @@ etcd -name e0 -heartbeat-interval 1000 -election-timeout 5000 -initial-advertise
 etcdctl user add root
 etcdctl user add reader
 etcdctl role add reader
-etcdctl role grant-permission reader read asmb/ *
+etcdctl role grant-permission reader read asmb/ asmb~
 etcdctl user grant reader reader
 etcdctl auth enable
 
