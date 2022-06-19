@@ -9,8 +9,9 @@
 * 3. [如何启动完整观察链](#-1)
 * 4. [如何启动一个生产节点](#-1)
 * 5. [如何添加一个备用服务器资源](#-1)
-* 6. [如何借用观察链启动独立运算钱包](#-1)
-* 7. [如何借用观察链启动远程钱包](#-1)
+* 6. [如何启动离线钱包](#-1)
+* 7. [如何借用观察链启动独立钱包](#-1)
+* 8. [如何借用观察链启动远程钱包](#-1)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -208,7 +209,8 @@ asmb node sync -syncpoints asmb.site:2379
 最后启动空节点备用，
 ```
 # 如果区块继续扩大分片，会在该节点上自动加载分片
-asmb node sync -syncpoints asmb.site:2379 
+cd node99
+asmb node addnode -miners ttt -rank 99999
 ```
 ##  4. <a name='-1'></a>如何启动一个生产节点
 如果是创世时期，必须拥有Genesis 创世者密钥才能启动生产节点
@@ -217,7 +219,7 @@ asmb node sync -syncpoints asmb.site:2379
 
 ##  5. <a name='-1'></a>如何添加一个备用服务器资源
 配置etcd 集群
-[https://gitee.com/asmb/doc/blob/master/etcd.md](https://github.com/asmbio/doc/blob/master/etcd.md)]
+[https://gitee.com/asmb/doc/blob/master/etcd.md](https://github.com/asmbio/doc/blob/master/etcd.md)
 
 初始化节点文件夹
 ```
@@ -235,7 +237,7 @@ wallet init
 wallet import -khex export.w
 ```
 
-拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口
+拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口，修改本地etcd 分片管理ip 端口
 
 ```
 "Rpcclientaddr": "asmb.site:8106"
@@ -252,9 +254,12 @@ cp ../asmb/Genesis Genesis
 asmb genesisminer
 
 ```
-
-##  6. <a name='-1'></a>如何借用观察链启动独立运算钱包
-##  7. <a name='-1'></a>如何借用观察链启动远程钱包
+##  6. <a name='-1'></a>如何启动离线钱包
+离线钱包不可以查看账户余额，只能管理本地密钥
+##  7. <a name='-1'></a>如何借用观察链启动独立钱包
+独立钱包会获取最新区块信息解析最新账户状态
+##  8. <a name='-1'></a>如何借用观察链启动远程钱包
+远程钱包通过观察链远程请求账户状态
 
 无论那种情况启动钱包wallet，秘钥都在本地加密管理，如果本地设备损坏或者丢失，秘钥也会丢失无法找回
 
