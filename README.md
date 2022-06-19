@@ -97,8 +97,9 @@ const MINER_CHAN_NUM = 10 // 处理消息协程数量（根据服务器节点性
 配置etcd 集群
 [https://gitee.com/asmb/doc/blob/master/etcd.md](https://github.com/asmbio/doc/blob/master/etcd.md)]
 
-初始化仓库,如果你拥有所有创世生产者密钥，只需要开启一个node，如果创世者有多个，由不同的创世者分别开启,每个完成node必须维护一个单独etcd 分片管理集群
+初始化仓库
 ```
+# 如果你拥有所有创世生产者密钥，只需要开启一个node，如果创世者有多个，由不同的创世者分别开启,每个node必须维护一个单独etcd 分片管理集群
 mkdir node1
 cd node1
 node1$ ./asmb init 
@@ -106,9 +107,9 @@ mkdir node2
 cd node2
 node2$ ./asmb init 
 ```
-导入密钥
+导入创世者密钥
 ```
-# export.w 包含加密后的密钥数据
+# export.w 包含加密后的创世者密钥数据
 wallet import -hkey export.w
 ```
 
