@@ -29,25 +29,19 @@ ASMB（自动伸缩网状区块链），采样DPOS+ 共识算法分片技术理�
 - //+debug 《该注释下内容逻辑无关，可以注释掉，提高性能
 
 ### 命令行cli 版本 安装
-下载地址:[github.com/asmbio/doc/releases/](https://github.com/asmbio/doc/releases/download/v0.0.1/wallet_win64_v0.0.1.zip)
-1. windows 安装
+下载地址:[github.com/asmbio/doc/releases/](https://github.com/asmbio/doc/releases/)
 
-   - 下载
+**windows 安装步骤**
 
-   下载文件 [github.com/asmbio/doc/releases/wallet_win64_v0.0.1.zip](https://github.com/asmbio/doc/releases/download/v0.0.1/wallet_win64_v0.0.1.zip) 到C:/asmb/bin/ 
-    
-   - 设置windows 环境变量
-	```
-	#   win+s 搜索》编辑系统环境变量》环境变量》编辑path 》添加可执行路径 
-	C:\asmb\bin
-	```
-   - 查看命令帮助
+  1. 下载文件最新版版 到C:/asmb/bin/ 
+  2. 设置windows 环境变量 C:\asmb\bin
+  3. 查看命令帮助
    ```
    wallet -h
    ```
 
    
-1. Ubuntu 安装
+**Ubuntu 安装**
 
 
    下载 
