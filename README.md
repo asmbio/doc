@@ -241,6 +241,35 @@ asmb genesisminer
 ## 如何借用观察链启动远程钱包
 远程钱包通过观察链远程请求账户状态
 
+1. 创建本地钱包仓库
+```
+mkdir mywallet
+cd mywallet
+# 初始化钱包会创建一个默认地址
+wallet init
+```
+2. 请求测试代币
+
+```
+# 
+# 请求代币前先查看一下账户余额
+wallet account getaccount -a xxx
+wallet test asknil -a xxx
+# 等待并查余额(30s 以上)
+wallet account getaccount -a xxx
+```
+3. 转账
+   
+```
+ wallet Trans -a xxx SignTrans -to xxx -blance "1 Nihil"
+```
+4. 转账并验证结果
+
+```
+wallet test verify -a xxx
+```
+
+
 无论那种情况启动钱包wallet，秘钥都在本地加密管理，如果本地设备损坏或者丢失，秘钥也会丢失无法找回
 
 
