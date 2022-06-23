@@ -155,7 +155,7 @@ node1$ ./asmb init
 # 注意修改一下对外服务ip和端口，以及本地etcd 分片管理ip 端口
 ``` 
 
-拷贝创世文件 Genesis
+拷贝创世文件 [测试网络Genesis](./Genesis)
 ```
 cp ../asmb/Genesis Genesis
 ```
