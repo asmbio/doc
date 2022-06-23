@@ -148,10 +148,19 @@ mkdir node1
 cd node1
 node1$ ./asmb init 
 ```
-修改配置文件
+
+拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口，修改本地etcd 分片管理ip 端口
+
 ```
-# 参考 如何启动一个本地区块链网络
+"Rpcclientaddr": "asmb.site:8106"
+ "FullapilistConfig": etcd服务
+``` 
+
+拷贝创世文件 Genesis
 ```
+cp ../asmb/Genesis Genesis
+```
+
 启动空节点
 
 ```
@@ -159,6 +168,8 @@ node1$ ./asmb init
 # 由于是观察链，不需要生产者密钥，设置一个不存在的生产者
 asmb node addnode -miners ttt -rank 99999
 ```
+
+
 按照上面步骤启动足够多的空节点，然后在新建一个仓库，配置好参数后，先不要启动，执行以下同步命令
 
 开启同步
