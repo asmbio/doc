@@ -149,7 +149,7 @@ cd node1
 node1$ ./asmb init 
 ```
 
-修改配置 参考[入门.md](https://github.com/asmbio/doc/blob/master/%E5%85%A5%E9%97%A8.md)
+修改配置 参考[入门.md](%E5%85%A5%E9%97%A8.md)
 
 启动空节点
 
