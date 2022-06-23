@@ -149,11 +149,10 @@ cd node1
 node1$ ./asmb init 
 ```
 
-拷贝修改配置文件 asmbcfg，将下面字段修改成外网可访问的ip和端口，修改本地etcd 分片管理ip 端口
+拷贝修改配置文件 [asmbcfg](https://github.com/asmbio/doc/blob/master/%E5%85%A5%E9%97%A8.md#asmb%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
 
 ```
-"Rpcclientaddr": "asmb.site:8106"
- "FullapilistConfig": etcd服务
+# 注意修改一下对外服务ip和端口，以及本地etcd 分片管理ip 端口
 ``` 
 
 拷贝创世文件 Genesis
