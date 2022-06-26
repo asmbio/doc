@@ -6,6 +6,10 @@
 ```
 # 导入测试秘钥
 wallet import -khex export.w
+# 查看分片命令
+ asmb --endpoints 127.0.0.1:2379 slice getslicelist
+# 查看blocks 命令
+ asmb --endpoints 127.0.0.1:2379 block getblocks >blocks.json
 ```
 3. min3 分叉&左+测试数据（此用例先分叉后再讲左侧合并到右侧
 
