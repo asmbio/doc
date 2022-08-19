@@ -26,7 +26,7 @@ ASMB(自动伸缩网状区块链)，区别于传统单链结构，ASMB采样DPOS
 - //+debug 《该注释下内容逻辑无关，可以注释掉，提高性能
 
 ### 命令行cli 版本 安装
-下载地址:[github.com/asmbio/doc/releases/](https://github.com/asmbio/doc/releases/)
+下载地址:[github.com/asmbio/releases/](https://github.com/asmbio/releases/)
 
 **windows 安装步骤**
 
@@ -42,7 +42,7 @@ ASMB(自动伸缩网状区块链)，区别于传统单链结构，ASMB采样DPOS
 
 
    下载 
-   [github.com/asmbio/doc/releases/wallet_ubuntu_v0.0.1.tar.gz](https://github.com/asmbio/doc/releases/download/v0.0.1/wallet_ubuntu_v0.0.1.tar.gz)
+   [https://github.com/asmbio/Release/tree/main/v0.0.17-beta/wallet_ubuntu_v0.0.1.tar.gz](https://github.com/asmbio/Release/tree/main/v0.0.17-beta/wallet_ubuntu_v0.0.1.tar.gz)
 
 
 ### 桌面版本 版本 安装
