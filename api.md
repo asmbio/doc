@@ -7,7 +7,7 @@
 # ASMB API
 
 ### 简介
-接口是基于"github.com/filecoin-project/go-jsonrpc" 开发的，符合rpc2.0 规范，目前已经实现的client有Go，C#两种。
+接口是基于 [filecoin jsonrpc](github.com/filecoin-project/go-jsonrpc) 开发的，符合rpc2.0 规范，目前已经实现的client有Go，C#两种。
     
 ### 接口列表
     
