@@ -191,10 +191,8 @@ asmb --endpoints 94.191.121.95:3379 slice getslicelist
 正常生产节点在获得投票排名之前处于观察状态，排名更新后自动开始生产
 
 ## 如何添加一个备用服务器资源
-1. 配置etcd 集群
-[https://gitee.com/asmb/doc/blob/master/etcd.md](https://github.com/asmbio/doc/blob/master/etcd.md)
 
-2. 初始化节点文件夹
+1. 初始化节点文件夹
 ```
 mkdir node1
 cd node1
@@ -204,18 +202,19 @@ cd lcdb
 wallet init
 ```
 
-3. 导入生产者秘钥 
+2. 导入生产者秘钥 
 
 ```
 wallet import -khex export.w
 ```
 
-4. 修改配置 参考[入门.md](%E5%85%A5%E9%97%A8.md)
+3. 复制原配置文件并修改本地rpc接口 参考[入门.md](%E5%85%A5%E9%97%A8.md)
 
-5. 启动节点
+
+4. 启动节点
 
 ```
-asmb genesisminer
+asmb node addnode
 
 ```
 ## 如何启动离线钱包
