@@ -154,6 +154,7 @@ node1$ ./asmb init
 # 空节点数量*每个节点最大分片数量，必须大于你要观察的区块链网络的分片数量，不然会出现资源不足的情况
 # 由于是观察链，不需要生产者密钥，设置一个不存在的生产者
 asmb node addnode -miners ttt -rank 99999
+
 ```
 
 按照上面步骤启动足够多的空节点
@@ -165,6 +166,8 @@ asmb node addnode -miners ttt -rank 99999
 cd node99
 # 该文件下必须有配置文件 
 asmb node sync -syncpoints asmb.site:2379 
+# 下面步骤同步所有账户最新状态数据到本地，耗时比较久（非必要步骤）
+asmb --endpoints 127.0.0.1:2379 node syncallaccounts
 ```
 执行成功后,空节点接收到命令会开始同步最新区块
 ```
