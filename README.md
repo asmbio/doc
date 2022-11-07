@@ -7,6 +7,7 @@
 		- [asmb 使用说明](#asmb-使用说明)
 		- [wallet 使用说明](#wallet-使用说明)
 	- [如何启动一个本地区块链网络](#如何启动一个本地区块链网络)
+	- [如何启动单个分片观察链](#如何启动单个分片观察链)
 	- [如何启动完整观察链](#如何启动完整观察链)
 	- [如何启动一个生产节点](#如何启动一个生产节点)
 	- [如何添加一个备用服务器资源](#如何添加一个备用服务器资源)
@@ -131,7 +132,39 @@ node1$ asmb genesisminer -miners 2YK3vbyZtstMS4ajXPxZhwksZDbv -rank 2
 node2$ asmb genesisminer -miners CkPw1fzw3tgN6t8NFRuP1hHnSw7 -miners 492xZNKN8FdH9NF3gUWX8A1iHbVj  -rank 0 -rank 1
 ```
 
+## 如何启动单个分片观察链
+1. 初始化仓库
+```
+mkdir node1
+cd node1
+node1$ ./asmb init 
+```
 
+2. 修改配置 参考[入门.md](%E5%85%A5%E9%97%A8.md)
+```
+# 节点类型必须是 LightNode 轻节点
+"NodeMode": "LightNode",
+```
+```
+
+	# LightNode 配置相关
+	#	TrustedIPNSnodes []string        // 手动配置可信的种子节点IPNS,第一次运行使用，运行后程序自动缓存排名前100的节点ipns，并校检前100节点共享的数据是否一致
+	#	MonitorAddrs     []types.Address // 监视服务地址 列表
+
+	"TrustedIPNSnodes": [
+		"/ipns/k51qzi5uqu5dhjps0fs6ydnwro8z50j0569eh98s43tnqs3vt4en3ely9mvy98"
+	],
+	"MonitorAddrs": [
+		"22xGFn6hd76h5nkA5uFt5pXKDfcb"
+	]
+```
+
+3. 启动轻服务节点
+
+```
+asmb node lightnode
+
+```
 
 ## 如何启动完整观察链
 

@@ -53,13 +53,15 @@ etcd -name e0 -heartbeat-interval 1000 -election-timeout 5000 -initial-advertise
 #### 设置访问权限
 
 ```
-# 注意修改密码
-etcdctl --endpoints  user add root:test123456
-etcdctl --endpoints  user add reader:test123456
-etcdctl --endpoints  role add reader
-etcdctl --endpoints  role grant-permission reader read asmb/ asmb~
-etcdctl --endpoints  user grant reader reader
-etcdctl --endpoints  auth enable
+# 注意修改写入权限密码，防止数据被别人修改
+etcdctl   user add root:test123456
+etcdctl   user add reader:test123456
+etcdctl   role add reader
+etcdctl   role grant-permission reader read asmb/ asmb~
+etcdctl   user grant reader reader
+etcdctl   auth enable
+
+# --endpoints 
 
 ```
 #### 检查状态结果
@@ -68,8 +70,8 @@ etcdctl --endpoints  auth enable
 etcdctl put asmb/1 1
 etcdctl get asmb/1 1
 
-etcdctl --endpoints  --user root:test123456 put asmb/1 1
-etcdctl --endpoints  --user reader:test123456 get asmb/1
+etcdctl   --user root:test123456 put asmb/1 1
+etcdctl  --user reader:test123456 get asmb/1
 
 ```
 
